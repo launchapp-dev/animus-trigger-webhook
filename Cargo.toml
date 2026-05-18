@@ -1,0 +1,45 @@
+[package]
+name = "animus-trigger-webhook"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Generic HTTP webhook receiver — trigger backend for Animus"
+repository = "https://github.com/launchapp-dev/animus-trigger-webhook"
+homepage = "https://github.com/launchapp-dev/animus-cli"
+readme = "README.md"
+default-run = "animus-trigger-webhook"
+
+[lib]
+name = "animus_trigger_webhook"
+path = "src/lib.rs"
+
+[[bin]]
+name = "animus-trigger-webhook"
+path = "src/main.rs"
+
+[dependencies]
+animus-plugin-protocol  = { git = "https://github.com/launchapp-dev/animus-protocol", branch = "main" }
+animus-trigger-protocol = { git = "https://github.com/launchapp-dev/animus-protocol", branch = "main" }
+animus-plugin-runtime   = { git = "https://github.com/launchapp-dev/animus-protocol", branch = "main" }
+
+axum = "0.7"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "io-util", "net", "sync", "time", "signal"] }
+tower = "0.5"
+tower-http = { version = "0.6", features = ["trace"] }
+hyper = { version = "1", features = ["server"] }
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+async-trait = "0.1"
+futures = "0.3"
+anyhow = "1"
+thiserror = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[dev-dependencies]
+reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
+tokio = { version = "1", features = ["test-util"] }

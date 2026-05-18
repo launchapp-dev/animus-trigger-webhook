@@ -1,0 +1,29 @@
+schema = "animus.plugin.v1"
+name = "animus-trigger-webhook"
+version = "0.1.0"
+plugin_kind = "trigger_backend"
+description = "Generic HTTP webhook receiver"
+
+[capabilities]
+streaming = true
+progress = false
+cancellation = false
+
+[binary]
+default = "animus-trigger-webhook"
+
+[[env]]
+key = "ANIMUS_WEBHOOK_LISTEN_ADDR"
+description = "ip:port for the HTTP listener (default 127.0.0.1:7878)"
+required = false
+
+[[env]]
+key = "ANIMUS_WEBHOOK_AUTH_TOKEN"
+description = "Bearer token for incoming POST auth (optional — leave unset to disable auth)"
+required = false
+sensitive = true
+
+[[env]]
+key = "ANIMUS_WEBHOOK_CHANNEL_BUFFER"
+description = "Buffer size for the in-memory event channel (default 256)"
+required = false
