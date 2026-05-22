@@ -1,6 +1,6 @@
 [package]
 name = "animus-trigger-webhook"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 license = "MIT"
 description = "Generic HTTP webhook receiver — trigger backend for Animus"
@@ -18,9 +18,9 @@ name = "animus-trigger-webhook"
 path = "src/main.rs"
 
 [dependencies]
-animus-plugin-protocol  = { git = "https://github.com/launchapp-dev/animus-protocol", branch = "main" }
-animus-trigger-protocol = { git = "https://github.com/launchapp-dev/animus-protocol", branch = "main" }
-animus-plugin-runtime   = { git = "https://github.com/launchapp-dev/animus-protocol", branch = "main" }
+animus-plugin-protocol  = { git = "https://github.com/launchapp-dev/animus-protocol", tag = "v0.1.4" }
+animus-trigger-protocol = { git = "https://github.com/launchapp-dev/animus-protocol", tag = "v0.1.4" }
+animus-plugin-runtime   = { git = "https://github.com/launchapp-dev/animus-protocol", tag = "v0.1.4" }
 
 axum = "0.7"
 tokio = { version = "1", features = ["rt-multi-thread", "macros", "io-util", "net", "sync", "time", "signal"] }
