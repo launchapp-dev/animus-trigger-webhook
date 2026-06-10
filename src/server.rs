@@ -140,11 +140,18 @@ fn check_auth(state: &AppState, headers: &HeaderMap) -> Result<(), StatusCode> {
         return Err(StatusCode::UNAUTHORIZED);
     };
     let presented = raw.strip_prefix("Bearer ").unwrap_or("");
-    if presented == expected.as_str() {
+    if constant_time_eq(presented.as_bytes(), expected.as_bytes()) {
         Ok(())
     } else {
         Err(StatusCode::UNAUTHORIZED)
     }
+}
+
+fn constant_time_eq(a: &[u8], b: &[u8]) -> bool {
+    if a.len() != b.len() {
+        return false;
+    }
+    a.iter().zip(b).fold(0u8, |acc, (x, y)| acc | (x ^ y)) == 0
 }
 
 fn parse_payload(bytes: &[u8]) -> Value {

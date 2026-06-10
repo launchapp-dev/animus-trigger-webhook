@@ -1,6 +1,6 @@
 schema = "animus.plugin.v1"
 name = "animus-trigger-webhook"
-version = "0.1.0"
+version = "0.1.1"
 plugin_kind = "trigger_backend"
 description = "Generic HTTP webhook receiver"
 
